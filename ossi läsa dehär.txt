@@ -1,0 +1,1 @@
+du måst int rör server.js filen na alls, allt du ska rör e he som finns inne i public mappen, desstuom ändra inte något på formsen förutom style.
