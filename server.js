@@ -23,7 +23,10 @@ const userSchema = mongoose.Schema({
 });
 const Users = mongoose.model("users", userSchema, "onlypans");
 
-
+// ??? Kollla om denna fungerar för home
+app.get('/', (req, res)=>{
+    res.sendFile(__dirname + '/public/home/' + '/index.html')
+})
 
 app.post("/login", (req, res) => {
     let data = req.body;
