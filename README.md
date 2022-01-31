@@ -2,4 +2,4 @@
 Team work
 
 
-Hej skric vad ni ska göra i redme filen
+Hej skriv vad ni ska göra i redme filen
