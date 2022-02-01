@@ -1,7 +1,11 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const bcrypt = require('bcrypt');
+
 const app = express();
 const port = 3000;
+const saltRounds = 10;
+
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 
@@ -39,25 +43,27 @@ app.post("/login", (req, res) => {
             console.log("No users found");
             res.redirect("/");
         }else{
-            if(findData[0].password === data.txtPassword){
+            if(bcrypt.compareSync(data.txtPassword, findData[0].password)){
                 console.log("User password matched");
                 res.redirect("/home");
             }else{
-                //res.redirect("/");
+                res.redirect("/");
             }
         }
     });
-
-    res.redirect("/");
 });
 app.post("/register", (req, res) => {
     let data = req.body;
     console.log(data);
 
+    // Encryption
+    const password = data.txtPassword;
+    const hashedPasswords = bcrypt.hashSync(password, saltRounds);
+
     let user = new Users({
         username: data.txtUser,
         email: data.txtEmail,
-        password: data.txtPassword
+        password: hashedPasswords
     });
     user.save();
 
