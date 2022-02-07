@@ -32,6 +32,7 @@ app.get('/', (req, res)=>{
     res.sendFile(__dirname + '/public/home/' + '/index.html')
 })
 
+
 app.post("/login", (req, res) => {
     let data = req.body;
     console.log(data);
